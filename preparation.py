@@ -1,5 +1,11 @@
 import pandas as pd
 
+ville_pays = {
+    "Paris": "France", "Cannes": "France", "Bordeaux": "France",
+    "Genève": "Suisse", "Londres": "Royaume-Uni", "Dubaï": "EAU",
+    "Shanghai": "Chine", "Séoul": "Corée", "New York": "USA",
+}
+
 def initialisation ():
     df = pd.read_csv("SaintHonore_clients.csv")
     df = df.drop_duplicates()
@@ -18,18 +24,19 @@ def initialisation ():
     df["pays_residence"] = df["pays_residence"].fillna("Inconnu")
     df["est_revenu_6m"] = df["est_revenu_6m"].fillna("Inconnu")
 
+    boutique = pd.read_csv("SaintHonore_boutiques.csv")
+    boutique["pays_boutique"] = boutique["ville"].map(ville_pays)
+    df = df.merge(boutique, left_on="boutique_principale", right_on="boutique_id", how="left")
+    df= df.drop(columns = ["boutique_id"])
+# ajout de la colonne touriste
+    df["Touriste"] = df["pays_residence"] != df["pays_boutique"]
+    
     return df
 
 if __name__ == "__main__":
     nt_client = initialisation()
     pd.set_option("display.float_format", "{:.2f}".format)
     print(nt_client.shape)
-    print(nt_client.head())
+    print(nt_client.head(5))
     print(nt_client.describe().T)
-    print(nt_client.isna().sum())
-    print(nt_client.duplicated().sum())
-    print(nt_client["carte_fidelite"].value_counts(dropna=False))
-    print(nt_client["canal_prefere"].value_counts(dropna=False))
-    print(nt_client["pays_residence"].value_counts(dropna=False))
-    print(nt_client["est_revenu_6m"].value_counts(dropna=False))
-
+# TEST GIT - 08/11/2026
