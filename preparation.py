@@ -83,7 +83,8 @@ if __name__ == "__main__":
     for col in ["touriste", "recule", "depart"]:
         assert nt_client[col].isin([0, 1]).all(), col
     assert nt_client["depart"].sum() == 412, nt_client["depart"].sum()
-   
+    
+    print("c'est tout bon!")
     print(nt_client.shape)
     print(nt_client.head(5))
     print(nt_client.describe().T)
