@@ -16,6 +16,15 @@ Les autres fichiers de code seront ajoutés par les branches suivantes.
 Voir les commentaires de `preparation.py` : une phrase par décision de nettoyage.
 
 ## Q1 — Touristes ou web ?
+**H1 (directeurs de boutique) : la baisse vient des touristes.**
+- Ce que je crois :
+- Sur quoi je m'appuie :
+- Comment je le vérifierai :
+
+**H2 (digital) : la baisse vient du web.**
+- Ce que je crois :
+- Sur quoi je m'appuie :
+- Comment je le vérifierai :
 
 ## Q2 — Le montant cumulé est-il un bon indicateur ?
 
