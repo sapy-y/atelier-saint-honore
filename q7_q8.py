@@ -95,9 +95,67 @@ def choisir_k(X):
 # On ne prend pas k=3 juste parce qu'il y a 3 cartes : c'est la carte qu'on veut juger.
 
 
+# Portrait des 5 groupes (étapes 5 et 6, chiffres de la sortie du script) :
+# 0 "Gros clients fidèles"  : 57 clients, panier ~6 700 €, ~10 achats par an, peu de retours.
+#                             Le moins de départs (35 %) et le plus gros prochain achat (~4 300 €).
+# 1 "Récents occasionnels"  : 251 clients, panier ~2 200 €, 2 achats, 1 an et demi d'ancienneté,
+#                             aucune demande SAV. 66 % ne reviennent pas.
+# 2 "Récents avec SAV"      : 173 clients, comme le groupe 1 mais avec en moyenne 1,3 demande SAV.
+#                             66 % ne reviennent pas.
+# 3 "Anciens réguliers"     : 179 clients, ~5 ans d'ancienneté, panier plus petit (~1 700 €),
+#                             3 à 4 achats par an. 52 % de départs.
+# 4 "Gros acheteurs à retours" : 40 clients, panier ~5 900 €, ~9 achats, 2,6 retours en moyenne.
+#                             Retours en série : à croiser avec Q9 (revente parallèle ?).
+NOMS_GROUPES = {
+    0: "Gros clients fidèles",
+    1: "Récents occasionnels",
+    2: "Récents avec SAV",
+    3: "Anciens réguliers",
+    4: "Gros acheteurs à retours",
+}
+
+# Conclusion sur les 3 cartes de 2015 :
+# chaque groupe contient à peu près la même part de cartes que le fichier entier
+# (environ 48 % sans carte, 35 % argent, 14 % or). Les gros clients fidèles n'ont pas plus
+# souvent la carte or que les récents occasionnels. La carte ne suit donc pas la valeur
+# réelle des clients : les niveaux de 2015 sont à refaire à partir de ces groupes.
+
+
+def decrire_groupes(df):
+    """Étape 5 : portrait de chaque groupe sur les colonnes qui ont servi à le former.
+    Entrée : le tableau des clients avec la colonne "groupe".
+    Sortie : effectif, moyenne et médiane de chaque colonne, par groupe.
+    On donne la médiane en plus de la moyenne car quelques très gros paniers
+    tirent la moyenne vers le haut.
+    """
+    effectif = df.groupby("groupe").size().rename("effectif")
+    moyennes = df.groupby("groupe")[COLONNES].mean().add_prefix("moy_")
+    medianes = df.groupby("groupe")[COLONNES].median().add_prefix("med_")
+    return pd.concat([effectif, moyennes, medianes], axis=1)
+
+
+def regarder_hors_modele(df):
+    """Étape 6 : on regarde les colonnes qui n'ont PAS servi à former les groupes.
+    Elles disent si les groupes sont utiles : s'ils se distinguent aussi sur le retour
+    à 6 mois ou le prochain achat, ce ne sont pas des groupes au hasard.
+    Sortie : deux tableaux, les indicateurs par groupe et la répartition des cartes.
+    """
+    indicateurs = df.groupby("groupe").agg(
+        taux_depart=("depart", "mean"),
+        prochain_achat_moyen=("montant_prochain_achat_eur", "mean"),
+        part_touristes=("touriste", "mean"),
+        part_en_ligne=("canal_prefere", lambda c: (c == "en ligne").mean()),
+        part_mixte=("canal_prefere", lambda c: (c == "mixte").mean()),
+    )
+    # normalize="index" : chaque ligne fait 100 %, on lit la part de chaque carte dans le groupe.
+    cartes = pd.crosstab(df["groupe"], df["carte_fidelite"], normalize="index")
+    return indicateurs, cartes
+
+
 if __name__ == "__main__":
     pd.set_option("display.float_format", "{:.2f}".format)
     pd.set_option("display.width", 200)
+    pd.set_option("display.max_columns", 20)
 
     clients = initialisation()
     X = standardiser(clients)
@@ -109,4 +167,15 @@ if __name__ == "__main__":
     modele = faire_groupes(X, K_CHOISI)
     clients["groupe"] = modele.labels_
     print("\nEffectif de chaque groupe (k =", K_CHOISI, ") :")
-    print(clients["groupe"].value_counts().sort_index())
+    print(clients["groupe"].map(NOMS_GROUPES).value_counts())
+
+    print("\n=== Q7 : portrait des groupes ===")
+    print(decrire_groupes(clients).T)
+
+    indicateurs, cartes = regarder_hors_modele(clients)
+    print("\n=== Q7 : colonnes non utilisées pour former les groupes ===")
+    print(indicateurs)
+    print("\nRépartition des cartes dans chaque groupe :")
+    print(cartes)
+    print("\nRépartition des cartes dans tout le fichier :")
+    print(clients["carte_fidelite"].value_counts(normalize=True))
