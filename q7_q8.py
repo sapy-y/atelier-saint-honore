@@ -152,6 +152,85 @@ def regarder_hors_modele(df):
     return indicateurs, cartes
 
 
+# Q8 : quel traitement pour chaque groupe, et lequel pèse le plus dans le chiffre d'affaires ?
+
+# Nombre de clients encartés dans toute l'entreprise (donné par le sujet).
+NB_CLIENTS_TOTAL = 6400
+
+
+def chiffre_affaires_groupes(df):
+    """Étape 1 et 2 de Q8 : poids de chaque groupe.
+    Entrée : le tableau des clients avec la colonne "groupe".
+    Sortie : un tableau avec, par groupe, l'effectif, le chiffre d'affaires sur 12 mois,
+    sa part du total, le CA médian par client, le taux de départ, le prochain achat moyen
+    et le CA extrapolé à toute la clientèle.
+    """
+    # montant_euro = achats sur 12 mois x panier moyen (vérifié à l'étape 0) :
+    # c'est donc bien le chiffre d'affaires des 12 derniers mois de chaque client.
+    t = df.groupby("groupe").agg(
+        effectif=("client_id", "size"),
+        ca_12m=("montant_euro", "sum"),
+        ca_median_client=("montant_euro", "median"),
+        taux_depart=("depart", "mean"),
+        prochain_achat_moyen=("montant_prochain_achat_eur", "mean"),
+    )
+    t["part_ca"] = t["ca_12m"] / t["ca_12m"].sum()
+    # Extrapolation : le fichier est un extrait de 700 clients sur 6 400. On multiplie par
+    # 6 400 / 700. Cela suppose que l'extrait est représentatif de toute la clientèle,
+    # ce que personne ne nous garantit : c'est un ordre de grandeur, pas un chiffre exact.
+    t["ca_extrapole"] = t["ca_12m"] * NB_CLIENTS_TOTAL / len(df)
+    return t
+
+
+# Ce qu'on appelle "forte valeur" : on juge un client sur son CA des 12 derniers mois,
+# mais par la médiane du groupe, pas par le montant cumulé seul (Q2 montre qu'il classe mal
+# les clients pris un par un). Seuils pris sur tout le fichier, pour ne rien inventer :
+# - forte valeur  : CA médian du groupe au-dessus du quart supérieur du fichier (9 277 €) ;
+# - valeur moyenne : au-dessus de la médiane du fichier (5 309 €) ;
+# - faible valeur : en dessous.
+# "Départs fréquents" : plus de 40 % du groupe ne revient pas sous 6 mois. Le fichier entier
+# est à 59 %, mais chez des clients qui rapportent 50 000 € par an, perdre presque un sur
+# deux coûte trop cher pour ne rien faire.
+SEUIL_DEPART = 0.40
+
+
+def choisir_traitement(ligne, seuil_fort, seuil_moyen):
+    """Étape 3 de Q8 : un traitement par groupe, selon la règle de la direction.
+    - forte valeur et départs fréquents : relance (un vendeur rappelle le client) ;
+    - forte valeur et fidèle : avant-première de la collection ;
+    - valeur moyenne : invitation à la collection ;
+    - faible valeur : rien (on ne dépense pas d'attention là où elle ne rapporte pas).
+    """
+    if ligne["ca_median_client"] >= seuil_fort:
+        if ligne["taux_depart"] > SEUIL_DEPART:
+            return "relance"
+        return "avant-première"
+    if ligne["ca_median_client"] >= seuil_moyen:
+        return "invitation"
+    return "rien"
+
+
+def tableau_q8(df):
+    """Réunit le poids de chaque groupe et son traitement, du plus gros CA au plus petit."""
+    t = chiffre_affaires_groupes(df)
+    seuil_fort = df["montant_euro"].quantile(0.75)
+    seuil_moyen = df["montant_euro"].median()
+    t["traitement"] = t.apply(choisir_traitement, axis=1, args=(seuil_fort, seuil_moyen))
+    t.index = t.index.map(NOMS_GROUPES)
+    return t.sort_values("ca_12m", ascending=False)
+
+
+# Résultat (sortie du script) :
+# - Gros clients fidèles : 57 clients (8 %) mais 41 % du CA, environ 33 M€ extrapolés.
+#   C'est le groupe qui pèse le plus. Traitement : avant-première.
+# - Gros acheteurs à retours : 40 clients, 22 % du CA (~18 M€ extrapolés), 47,5 % de départs.
+#   Traitement : relance, MAIS après la vérification de Q9 : leurs retours en série peuvent
+#   cacher de la revente parallèle, et on ne relance pas un revendeur.
+# - Anciens réguliers : valeur moyenne, 12 % du CA. Traitement : invitation.
+# - Récents occasionnels et récents avec SAV : faible valeur, 25 % du CA à eux deux.
+#   Traitement : rien, même s'ils partent souvent (66 %).
+
+
 if __name__ == "__main__":
     pd.set_option("display.float_format", "{:.2f}".format)
     pd.set_option("display.width", 200)
@@ -179,3 +258,9 @@ if __name__ == "__main__":
     print(cartes)
     print("\nRépartition des cartes dans tout le fichier :")
     print(clients["carte_fidelite"].value_counts(normalize=True))
+
+    print("\n=== Q8 : poids et traitement de chaque groupe ===")
+    q8 = tableau_q8(clients)
+    print(q8)
+    print("\nCA total du fichier sur 12 mois :", round(q8["ca_12m"].sum()), "€")
+    print("CA total extrapolé à", NB_CLIENTS_TOTAL, "clients :", round(q8["ca_extrapole"].sum()), "€")
