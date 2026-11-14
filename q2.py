@@ -28,3 +28,14 @@ bas_revenu = (df["tranche_montant"] == "bas" ) & (df["revenu"] == 1 )
 print("haut et non revenus :", haut_non_revenu.sum())
 print("bas et revenus :", bas_revenu.sum())
 print("total mal classés :", haut_non_revenu.sum() + bas_revenu.sum())
+
+# Morceau F : les mêmes tranches avec d'autres indicateurs
+indicateurs = ["montant_euro", "nb_achats_12m", "panier_moyen_eur", "anciennete_mois"]
+
+for col in indicateurs:
+    tranches = pd.qcut(df[col], 4, duplicates="drop")
+    tableau = df.groupby(tranches, observed=True)["revenu"].agg(["count", "mean"]).round(3)
+    print(col)
+    print(tableau)
+    print("écart haut - bas :", round(tableau["mean"].iloc[-1] - tableau["mean"].iloc[0], 3))
+    print()
