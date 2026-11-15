@@ -57,10 +57,10 @@ def initialisation ():
     df["touriste"] = (df["pays_residence"] != df["pays_boutique"]).astype(int)
 
 # ajout de la colonne rapport_achats
-    df["rapport_achats_pro"] = df["montant_prochain_achat_eur"] / df["panier_moyen_eur"]
+    df["rapport_prochain"] = df["montant_prochain_achat_eur"] / df["panier_moyen_eur"]
 # ajout de la colonne reculement
 # Si c'est plus petit que 1, le client dépense moins que d'habitude : je dis qu'il "recule".
-    df["recule"] = (df["rapport_achats_pro"] < 1).astype(int)
+    df["recule"] = (df["rapport_prochain"] < 1).astype(int)
 # ajout de la colonne la part des achats qui aboutissent a un retour
 #La part de retours correspond au nombre de retours par rapport aux achats. Certains clients retournent plus de produits qu’ils n’en achètent, mais je les conserve pour pouvoir les utiliser dans la question 9.
     df["part_retours"] = df["retours"] / df["nb_achats_12m"]
