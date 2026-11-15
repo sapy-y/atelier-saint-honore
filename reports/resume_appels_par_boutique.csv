@@ -1,0 +1,25 @@
+boutique,nb_clients,clients_a_risque,appels,partants_atteints,appels_non_utiles,ville,vendeurs,appels_par_vendeur
+BT10,33,2,2,1,1,Dubaï,22,0.1
+BT11,37,0,0,0,0,Shanghai,4,0.0
+BT12,30,2,2,1,1,Cannes,9,0.2
+BT13,31,2,2,1,1,Shanghai,25,0.1
+BT14,28,2,2,2,0,Genève,20,0.1
+BT15,33,3,3,3,0,Séoul,8,0.4
+BT16,33,1,1,1,0,Paris,21,0.0
+BT17,22,0,0,0,0,Paris,25,0.0
+BT18,22,0,0,0,0,Cannes,8,0.0
+BT19,24,1,1,1,0,Dubaï,7,0.1
+BT20,35,0,0,0,0,Bordeaux,22,0.0
+BT21,29,1,1,1,0,New York,24,0.0
+BT22,25,0,0,0,0,Séoul,21,0.0
+BT23,34,2,2,2,0,Cannes,18,0.1
+BT24,27,1,1,0,1,Cannes,15,0.1
+BT25,31,2,2,2,0,Londres,13,0.2
+BT26,32,3,3,3,0,Bordeaux,13,0.2
+BT27,22,0,0,0,0,Dubaï,12,0.0
+BT28,30,2,2,1,1,Cannes,14,0.1
+BT29,26,0,0,0,0,Séoul,6,0.0
+BT30,36,2,2,2,0,Cannes,13,0.2
+BT31,25,1,1,1,0,Dubaï,17,0.1
+BT32,29,1,1,1,0,Dubaï,19,0.1
+BT33,26,1,1,1,0,Cannes,11,0.1
