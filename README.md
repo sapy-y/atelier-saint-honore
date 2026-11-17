@@ -15,7 +15,15 @@ Les autres fichiers de code seront ajoutés par les branches suivantes.
 ## Étape 0 — Préparation des données
 Voir les commentaires de `preparation.py` : une phrase par décision de nettoyage.
 
-## Q1 — Touristes ou web ?
+**H1 – Les directeurs de boutique pensent que la baisse est liée aux touristes.**
+Selon les directeurs de boutique, la baisse du panier vient principalement des touristes, c'est-à-dire des clients qui habitent dans un autre pays que celui où se trouve la boutique.
+Leur explication est assez simple : les touristes viennent souvent faire des achats ponctuels, par exemple pour acheter des cadeaux, et ne reviennent pas forcément pour effectuer d'autres achats.
+Pour vérifier cette idée, je vais comparer le rapport_prochain des touristes avec celui des clients locaux. Je regarderai ensuite si les résultats changent selon le canal d'achat.
+
+**H2 – L'équipe digitale pense que la baisse vient des achats en ligne.**
+Pour l'équipe digitale, ce sont surtout les achats sur Internet qui expliquent la baisse du panier.
+L'idée est que les clients qui achètent en ligne ont tendance à faire des achats plus rapides et parfois moins importants que ceux qui se rendent directement en boutique, où ils peuvent bénéficier des conseils des vendeurs.
+Pour vérifier cette hypothèse, je vais comparer le rapport_prochain des clients qui achètent en boutique, en ligne ou sur les deux canaux. Je regarderai également si le fait d'être touriste ou local peut avoir une influence sur les résultats.
 
 ## Q2 — Le montant cumulé est-il un bon indicateur ?
 
