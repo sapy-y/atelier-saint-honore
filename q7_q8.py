@@ -95,7 +95,7 @@ def choisir_k(X):
 # On ne prend pas k=3 juste parce qu'il y a 3 cartes : c'est la carte qu'on veut juger.
 
 
-# Portrait des 5 groupes (étapes 5 et 6, chiffres de la sortie du script) :
+# Portrait des 5 groupes :
 # 0 "Gros clients fidèles"  : 57 clients, panier ~6 700 €, ~10 achats par an, peu de retours.
 #                             Le moins de départs (35 %) et le plus gros prochain achat (~4 300 €).
 # 1 "Récents occasionnels"  : 251 clients, panier ~2 200 €, 2 achats, 1 an et demi d'ancienneté,
@@ -165,7 +165,7 @@ def chiffre_affaires_groupes(df):
     sa part du total, le CA médian par client, le taux de départ, le prochain achat moyen
     et le CA extrapolé à toute la clientèle.
     """
-    # montant_euro = achats sur 12 mois x panier moyen (vérifié à l'étape 0) :
+    # montant_euro = achats sur 12 mois x panier moyen :
     # c'est donc bien le chiffre d'affaires des 12 derniers mois de chaque client.
     t = df.groupby("groupe").agg(
         effectif=("client_id", "size"),
@@ -220,7 +220,7 @@ def tableau_q8(df):
     return t.sort_values("ca_12m", ascending=False)
 
 
-# Résultat (sortie du script) :
+# Résultat :
 # - Gros clients fidèles : 57 clients (8 %) mais 41 % du CA, environ 33 M€ extrapolés.
 #   C'est le groupe qui pèse le plus. Traitement : avant-première.
 # - Gros acheteurs à retours : 40 clients, 22 % du CA (~18 M€ extrapolés), 47,5 % de départs.
