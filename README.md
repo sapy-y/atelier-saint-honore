@@ -1,7 +1,6 @@
-# Atelier Saint-Honoré — Projet Datamining (Sujet 7)
+# Projet Datamining : Atelier Saint-Honoré
 
 Projet de fin de module : analyse des clients d'une marque de maroquinerie de luxe
-(770 lignes dans le fichier clients, 24 boutiques).
 
 ## Comment lancer le code
 
@@ -12,7 +11,8 @@ Projet de fin de module : analyse des clients d'une marque de maroquinerie de lu
 
 Les autres fichiers de code seront ajoutés par les branches suivantes.
 
-## Étape 0 — Préparation des données
+## Q1 : D'où vient la baisse du panier moyen ?
+
 Voir les commentaires de `preparation.py` : une phrase par décision de nettoyage.
 
 **H1 – Les directeurs de boutique pensent que la baisse est liée aux touristes.**
@@ -25,17 +25,17 @@ Pour l'équipe digitale, ce sont surtout les achats sur Internet qui expliquent 
 L'idée est que les clients qui achètent en ligne ont tendance à faire des achats plus rapides et parfois moins importants que ceux qui se rendent directement en boutique, où ils peuvent bénéficier des conseils des vendeurs.
 Pour vérifier cette hypothèse, je vais comparer le rapport_prochain des clients qui achètent en boutique, en ligne ou sur les deux canaux. Je regarderai également si le fait d'être touriste ou local peut avoir une influence sur les résultats.
 
-## Q2 — Le montant cumulé est-il un bon indicateur ?
+## Q2 : Le montant cumulé est-il un bon indicateur ?
 
-## Q3 — Montant du prochain achat
+## Q3 : Montant du prochain achat
 
-## Q4 — Sur quels profils l'estimation est-elle fiable ?
+## Q4 : Sur quels profils l'estimation est-elle fiable ?
 
-## Q5 — Repérer les départs
+## Q5 : Repérer les départs
 
-## Q6 — 40 appels par boutique et par mois
+## Q6 : 40 appels par boutique et par mois
 
-## Q7 — Combien de types de clients ?
+## Q7 : Combien de types de clients ?
 
 La question revient à se demander si les 3 niveaux de carte (aucune, argent, or) correspondent à de vrais types de clients. Il n'y a rien à prédire ici, donc j'ai utilisé le k-means pour regrouper les clients qui se ressemblent.
 
@@ -59,7 +59,7 @@ Conclusion : on a 5 types de clients, et les cartes n'y correspondent pas. Dans 
 
 Recommandation : refaire les niveaux du programme de fidélité à partir de ces groupes plutôt que de garder ceux de 2015. Aujourd'hui, la carte or ne permet pas de reconnaître les clients qui rapportent le plus.
 
-## Q8 — Quel traitement pour chaque groupe ?
+## Q8 : Quel traitement pour chaque groupe ?
 
 Pour chaque groupe, j'ai calculé le chiffre d'affaires des 12 derniers mois (somme du montant de chaque client), sa part du total et le taux de clients qui ne reviennent pas. J'ai ensuite extrapolé à toute la clientèle en multipliant par 6 400 / 700. Ça suppose que les 700 clients du fichier sont représentatifs des 6 400, ce qu'on ne peut pas vérifier : les montants extrapolés sont des ordres de grandeur.
 
@@ -79,6 +79,6 @@ Les gros acheteurs à retours rapportent beaucoup et presque la moitié ne revie
 
 Les anciens réguliers ont une valeur moyenne : une invitation à la collection suffit. Pour les deux groupes de clients récents, même s'ils partent souvent, leur valeur reste faible et on ne leur envoie rien de particulier. Au total, l'avant-première et la relance concernent moins de 100 clients sur 700, mais 63 % du chiffre d'affaires.
 
-## Q9 — Achats atypiques
+## Q9 : Achats atypiques
 
 ## Synthèse
