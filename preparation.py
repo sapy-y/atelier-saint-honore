@@ -1,5 +1,5 @@
 import pandas as pd
-from sympy import Si
+
 
 ville_pays = {
     "Paris": "France", "Cannes": "France", "Bordeaux": "France",
