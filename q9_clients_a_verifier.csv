@@ -1,0 +1,57 @@
+﻿client_id,boutique_principale,pays_residence,anciennete_mois,nb_achats_12m,panier_moyen_eur,montant_euro,retours,part_retours,demandes_sav,anomalie_retours,volume_eleve,ratio_retours_eleve,type_anomalie,priorite
+CT80322,BT29,Chine,11.0,15.0,7090.0,106350.0,3,0.2,0,True,True,False,Volume eleve et retours atypiques,Priorite elevee
+CT80197,BT31,France,18.0,12.0,8119.0,97428.0,3,0.25,0,True,True,False,Volume eleve et retours atypiques,Priorite elevee
+CT80097,BT11,France,32.0,10.0,8863.0,88630.0,3,0.3,0,True,True,False,Volume eleve et retours atypiques,Priorite elevee
+CT80525,BT27,USA,1.0,9.0,6755.0,60795.0,3,0.3333333333333333,0,True,False,False,Retours atypiques,Priorite elevee
+CT80545,BT20,Chine,13.0,7.0,7680.0,53760.0,3,0.42857142857142855,0,True,False,False,Retours atypiques,Priorite elevee
+CT80404,BT18,Chine,11.0,6.0,7827.0,46962.0,4,0.6666666666666666,0,True,False,True,Retours atypiques,Priorite elevee
+CT80226,BT25,Chine,8.0,7.0,6231.0,43617.0,5,0.7142857142857143,0,True,False,True,Retours atypiques,Priorite elevee
+CT80488,BT30,France,26.0,6.0,6830.0,40980.0,3,0.5,0,True,False,False,Retours atypiques,Priorite elevee
+CT80508,BT16,Italie,8.0,12.0,3091.0,37092.0,3,0.25,0,True,False,False,Retours atypiques,Priorite elevee
+CT80419,BT32,France,14.0,6.0,5806.0,34836.0,4,0.6666666666666666,0,True,False,True,Retours atypiques,Priorite elevee
+CT80158,BT32,USA,5.0,7.0,4559.0,31913.0,3,0.42857142857142855,0,True,False,False,Retours atypiques,Priorite elevee
+CT80676,BT19,France,22.0,6.0,4573.0,27438.0,3,0.5,1,True,False,False,Retours atypiques,Priorite elevee
+CT80393,BT12,France,20.0,9.0,2528.0,22752.0,3,0.3333333333333333,1,True,False,False,Retours atypiques,Priorite elevee
+CT80530,BT24,USA,10.0,2.0,9929.0,19858.0,4,2.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80527,BT24,Chine,13.0,4.0,4325.0,17300.0,3,0.75,0,True,False,True,Retours atypiques,Priorite elevee
+CT80019,BT23,France,5.0,2.0,6740.0,13480.0,3,1.5,0,True,False,True,Retours atypiques,Priorite elevee
+CT80559,BT14,Corée,23.0,8.0,1006.0,8048.0,3,0.375,0,True,False,False,Retours atypiques,Priorite elevee
+CT80452,BT32,EAU,17.0,2.0,3592.0,7184.0,4,2.0,2,True,False,True,Retours atypiques,Priorite elevee
+CT80667,BT19,Chine,17.0,1.0,2941.0,2941.0,2,2.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80430,BT12,France,7.0,1.0,2229.0,2229.0,2,2.0,1,True,False,True,Retours atypiques,Priorite elevee
+CT80635,BT22,EAU,84.0,1.0,1942.0,1942.0,2,2.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80688,BT30,EAU,67.0,1.0,1789.0,1789.0,2,2.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80582,BT21,Italie,52.0,1.0,1267.0,1267.0,3,3.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80590,BT12,Italie,40.0,1.0,365.0,365.0,2,2.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80555,BT30,Chine,31.0,1.0,290.0,290.0,3,3.0,0,True,False,True,Retours atypiques,Priorite elevee
+CT80672,BT23,USA,10.0,9.0,12685.0,114165.0,1,0.1111111111111111,0,False,True,False,Volume eleve,Controle du volume
+CT80632,BT13,EAU,10.0,17.0,6628.0,112676.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80542,BT20,USA,1.0,14.0,7543.0,105602.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80494,BT12,USA,14.0,11.0,9597.0,105567.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80193,BT24,EAU,22.0,13.0,7899.0,102687.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80429,BT12,USA,11.0,13.0,7792.0,101296.0,1,0.07692307692307693,0,False,True,False,Volume eleve,Controle du volume
+CT80231,BT31,France,1.0,11.0,8521.0,93731.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80010,BT33,France,7.0,12.0,7635.0,91620.0,2,0.16666666666666666,0,False,True,False,Volume eleve,Controle du volume
+CT80481,BT23,USA,6.0,15.0,5863.0,87945.0,0,0.0,1,False,True,False,Volume eleve,Controle du volume
+CT80142,BT14,EAU,24.0,9.0,9637.0,86733.0,1,0.1111111111111111,1,False,True,False,Volume eleve,Controle du volume
+CT80441,BT23,Corée,13.0,10.0,8634.0,86340.0,0,0.0,1,False,True,False,Volume eleve,Controle du volume
+CT80636,BT28,Suisse,7.0,12.0,6837.0,82044.0,2,0.16666666666666666,2,False,True,False,Volume eleve,Controle du volume
+CT80036,BT20,EAU,21.0,12.0,6779.0,81348.0,1,0.08333333333333333,0,False,True,False,Volume eleve,Controle du volume
+CT80101,BT18,France,14.0,9.0,8996.0,80964.0,0,0.0,1,False,True,False,Volume eleve,Controle du volume
+CT80470,BT30,Corée,8.0,9.0,8845.0,79605.0,1,0.1111111111111111,0,False,True,False,Volume eleve,Controle du volume
+CT80446,BT20,France,17.0,12.0,6505.0,78060.0,2,0.16666666666666666,1,False,True,False,Volume eleve,Controle du volume
+CT80067,BT18,Chine,23.0,13.0,5971.0,77623.0,1,0.07692307692307693,0,False,True,False,Volume eleve,Controle du volume
+CT80107,BT26,Chine,15.0,8.0,9551.0,76408.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80379,BT14,Suisse,3.0,10.0,7623.0,76230.0,1,0.1,0,False,True,False,Volume eleve,Controle du volume
+CT80359,BT32,USA,11.0,9.0,8452.0,76068.0,1,0.1111111111111111,0,False,True,False,Volume eleve,Controle du volume
+CT80465,BT12,France,14.0,8.0,9235.0,73880.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80345,BT11,Chine,26.0,10.0,7242.0,72420.0,0,0.0,1,False,True,False,Volume eleve,Controle du volume
+CT80145,BT14,France,18.0,14.0,5078.0,71092.0,2,0.14285714285714285,1,False,True,False,Volume eleve,Controle du volume
+CT80105,BT12,France,11.0,8.0,8531.0,68248.0,2,0.25,1,False,True,False,Volume eleve,Controle du volume
+CT80367,BT20,France,25.0,8.0,8509.0,68072.0,1,0.125,1,False,True,False,Volume eleve,Controle du volume
+CT80584,BT11,France,1.0,7.0,9625.0,67375.0,2,0.2857142857142857,0,False,True,False,Volume eleve,Controle du volume
+CT80464,BT15,Suisse,1.0,12.0,5609.0,67308.0,1,0.08333333333333333,0,False,True,False,Volume eleve,Controle du volume
+CT80132,BT14,USA,16.0,8.0,8261.0,66088.0,0,0.0,1,False,True,False,Volume eleve,Controle du volume
+CT80471,BT26,USA,8.0,8.0,8053.0,64424.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
+CT80540,BT28,USA,19.0,7.0,9092.0,63644.0,1,0.14285714285714285,0,False,True,False,Volume eleve,Controle du volume
+CT80699,BT10,Chine,26.0,7.0,9077.0,63539.0,0,0.0,0,False,True,False,Volume eleve,Controle du volume
